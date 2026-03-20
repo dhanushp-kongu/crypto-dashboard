@@ -1,11 +1,12 @@
 # 🚀 CryptoLens — Real-Time Crypto Market Dashboard
 
 A real-time cryptocurrency dashboard built with React and CoinGecko API.
+No backend, no install needed — just open and use.
 
 ---
 
 ## 🌐 Live Demo
-[Click here to view live demo](https://YOUR-NETLIFY-LINK.netlify.app)
+[Click here to view live demo](https://crypto-dashboard-eo8x.vercel.app/)
 
 ---
 
@@ -15,88 +16,96 @@ A real-time cryptocurrency dashboard built with React and CoinGecko API.
 |---|---|
 | React 18 (CDN) | Component-based UI, Context API for state management |
 | CoinGecko API | Free public API, no API key needed |
-| Chart.js | Lightweight charting library |
-| LocalStorage | Simple persistence for watchlist and theme |
-| CSS Variables | Clean dark/light mode switching |
+| LocalStorage | Simple persistence for watchlist and theme preference |
+| CSS Variables | Clean dark/light mode switching with one toggle |
+| Google Fonts | Distinctive typography for professional look |
 
 ---
 
 ## 📦 Setup Instructions
 
-### Run locally:
-1. Download or clone this repository
+### Option 1 — Live Server (Recommended)
+1. Download and extract the ZIP file
 2. Open the folder in VS Code
-3. Install Live Server extension
+3. Install Live Server extension (Ctrl + Shift + X → search Live Server)
 4. Click "Go Live" at bottom right
 5. App opens at http://127.0.0.1:5500
 
-### Or simply:
-- Double-click index.html in your browser
+### Option 2 — Direct Open
+1. Extract the ZIP file
+2. Open the crypto-dashboard folder
+3. Double-click index.html
+4. Opens directly in your browser ✅
+
+---
+
+## ✨ Features
+
+- Live top 20 cryptocurrencies from CoinGecko API
+- Search by coin name or symbol
+- Star coins to save to personal watchlist
+- Click any coin to see detailed modal (24h high/low, ATH, volume)
+- Refresh button updates data without page reload
+- Dark / Light mode toggle
+- Watchlist persists after browser refresh
+- Error banner for API rate limit or offline detection
+- Skeleton loading animation while fetching
+
+---
+
+## 🎯 Evaluation Criteria
+
+### 1. Error Handling
+- API rate limit (429) → shows friendly error banner with retry button
+- Offline detection → navigator.onLine check shows offline message
+- Detail fetch fails → falls back to basic data already loaded in list
+
+### 2. Performance
+- useMemo for filtered coin list — no recalculation on every render
+- useCallback for fetchCoins and toggleWatchlist — no unnecessary recreations
+- API called only on mount and manual refresh — no polling or wasteful calls
+
+### 3. Code Cleanliness
+- All API calls in js/services/api.js only
+- All LocalStorage in js/services/storage.js only
+- Each component in its own file under js/components/
 
 ---
 
 ## ⚖️ Trade-offs & Improvements
 
-### Shortcuts taken:
+### Shortcuts taken
 - Used CDN React instead of Vite build tool
-- No API key (CoinGecko free tier has rate limits)
-- Single HTML/CSS/JS files, no bundler
+- CoinGecko free tier has rate limits (no API key)
+- No real-time WebSocket updates
 
-### Given more time, I would:
+### Given more time, I would
 1. Add price sparkline charts for each coin
-2. Add portfolio tracker with buy price entry
-3. Use WebSocket for real-time price updates
-4. Add price alerts / notifications
-5. Add more detailed chart with historical data
-6. Implement proper build pipeline with Vite
-```
+2. Add WebSocket for real-time price updates
+3. Add portfolio tracker with buy price entry
+4. Add price alert notifications
+5. Add historical price chart with Chart.js
+6. Use Vite for proper production build
+7. Write unit tests for API service functions
 
 ---
 
-4. Click **"Commit changes"** ✅
+## 📁 Project Structure
 
-### Your GitHub link:
-```
-https://github.com/YOUR-USERNAME/crypto-dashboard
-```
-
----
-
-## PART 2 — Deploy to Netlify (Live Demo)
-
-### Step 1 — Go to Netlify Drop
-Open: **app.netlify.com/drop**
-
----
-
-### Step 2 — Upload your folder
-1. Open your `crypto-dashboard` folder on your computer
-2. **Drag the entire folder** into the Netlify browser window
-3. Wait 10–15 seconds
-
----
-
-### Step 3 — Get your live link
-Netlify gives you a link like:
-```
-https://amazing-name-123456.netlify.app
-```
-Copy this link ✅
-
----
-
-### Step 4 — Update README with live link
-1. Go back to your GitHub repo
-2. Click `README.md` → click ✏️ edit
-3. Replace `YOUR-NETLIFY-LINK` with your actual Netlify URL
-4. Click **"Commit changes"**
-
----
-
-## PART 3 — Final Submission
-
-### What to send to evaluators:
-```
-1. GitHub Repo  →  https://github.com/YOUR-USERNAME/crypto-dashboard
-2. Live Demo    →  https://YOUR-NAME.netlify.app
-3. README       →  Already inside GitHub repo ✅
+\`\`\`
+crypto-dashboard/
+│
+├── index.html
+├── css/
+│   └── styles.css
+└── js/
+    ├── services/
+    │   ├── api.js
+    │   └── storage.js
+    ├── components/
+    │   ├── Header.js
+    │   ├── CoinCard.js
+    │   ├── Modal.js
+    │   └── ErrorBanner.js
+    └── app.js
+    
